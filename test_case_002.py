@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
 import unittest
+from contact import Contact
 
 class CreateContact(unittest.TestCase):
     def setUp(self):
@@ -11,11 +12,15 @@ class CreateContact(unittest.TestCase):
         wd = self.wd
         self.open_main_page(wd)
         self.login(wd)
-        self.fill_form(wd)
+        #self.fill_form(wd, Contact(contact_title="title_001", contact_company="company_001", contact_address="address_001"))
+        self.fill_form(wd, contact_title="title_001", contact_company="company_001", contact_address="address_001")
         wd.find_element_by_link_text("home page").click()
+        self.logout(wd)
+
+    def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
 
-    def fill_form(self, wd, title="title_001", company="company_001", address="address_001"):
+    def fill_form(self, wd, contact_title, contact_company, contact_address):
         # fill text fields
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -35,13 +40,13 @@ class CreateContact(unittest.TestCase):
         wd.find_element_by_name("photo").send_keys("/opt/lampp/htdocs/addressbook/header.jpg")
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
-        wd.find_element_by_name("title").send_keys(title)
+        wd.find_element_by_name("title").send_keys(contact_title)
         wd.find_element_by_name("company").click()
         wd.find_element_by_name("company").clear()
-        wd.find_element_by_name("company").send_keys(company)
+        wd.find_element_by_name("company").send_keys(contact_company)
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(address)
+        wd.find_element_by_name("address").send_keys(contact_address)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
         wd.find_element_by_name("home").send_keys("home_001")
