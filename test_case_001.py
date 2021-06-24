@@ -7,13 +7,13 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
 
-class UntitledTestCase(unittest.TestCase):
+class CreateGroup(unittest.TestCase):
     def setUp(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
     
-    def test_untitled_test_case(self):
+    def test_create_group(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/index.php")
         wd.find_element_by_name("user").click()
