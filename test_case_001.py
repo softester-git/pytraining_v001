@@ -14,14 +14,7 @@ class CreateGroup(unittest.TestCase):
         self.login(wd)
         self.open_groups_page(wd)
         self.init_create_group(wd)
-        # fill group form
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys("group_name_001")
-        wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys("group_header_001")
-        wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys("group_footer_001")
+        self.fill_group_form(wd)
         # submit form
         wd.find_element_by_name("submit").click()
         # return to groups page
@@ -29,6 +22,15 @@ class CreateGroup(unittest.TestCase):
         wd.find_element_by_xpath("//div[@id='content']/form/span").click()
         # logout
         wd.find_element_by_link_text("Logout").click()
+
+    def fill_group_form(self, wd):
+        wd.find_element_by_name("group_name").click()
+        wd.find_element_by_name("group_name").clear()
+        wd.find_element_by_name("group_name").send_keys("group_name_001")
+        wd.find_element_by_name("group_header").clear()
+        wd.find_element_by_name("group_header").send_keys("group_header_001")
+        wd.find_element_by_name("group_footer").clear()
+        wd.find_element_by_name("group_footer").send_keys("group_footer_001")
 
     def init_create_group(self, wd):
         wd.find_element_by_name("new").click()
