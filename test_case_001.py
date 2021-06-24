@@ -16,11 +16,13 @@ class CreateGroup(unittest.TestCase):
         self.init_create_group(wd)
         self.fill_group_form(wd)
         self.submit_form(wd)
-        # return to groups page
-        wd.find_element_by_link_text("group page").click()
-        wd.find_element_by_xpath("//div[@id='content']/form/span").click()
+        self.return_to_groups_page(wd)
         # logout
         wd.find_element_by_link_text("Logout").click()
+
+    def return_to_groups_page(self, wd):
+        wd.find_element_by_link_text("group page").click()
+        wd.find_element_by_xpath("//div[@id='content']/form/span").click()
 
     def submit_form(self, wd):
         wd.find_element_by_name("submit").click()
