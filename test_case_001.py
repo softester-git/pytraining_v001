@@ -13,8 +13,7 @@ class CreateGroup(unittest.TestCase):
         self.open_main_page(wd)
         self.login(wd)
         self.open_groups_page(wd)
-        # init create group
-        wd.find_element_by_name("new").click()
+        self.init_create_group(wd)
         # fill group form
         wd.find_element_by_name("group_name").click()
         wd.find_element_by_name("group_name").clear()
@@ -30,6 +29,9 @@ class CreateGroup(unittest.TestCase):
         wd.find_element_by_xpath("//div[@id='content']/form/span").click()
         # logout
         wd.find_element_by_link_text("Logout").click()
+
+    def init_create_group(self, wd):
+        wd.find_element_by_name("new").click()
 
     def open_groups_page(self, wd):
         wd.find_element_by_link_text("groups").click()
