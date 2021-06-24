@@ -11,14 +11,7 @@ class CreateGroup(unittest.TestCase):
     def test_create_group(self):
         wd = self.wd
         self.open_main_page(wd)
-        # login
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("secret")
-        wd.find_element_by_xpath("//input[@value='Login']").click()
+        self.login(wd)
         # open groups page
         wd.find_element_by_link_text("groups").click()
         # init create group
@@ -39,8 +32,16 @@ class CreateGroup(unittest.TestCase):
         # logout
         wd.find_element_by_link_text("Logout").click()
 
+    def login(self, wd):
+        wd.find_element_by_name("user").click()
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys("admin")
+        wd.find_element_by_name("pass").click()
+        wd.find_element_by_name("pass").clear()
+        wd.find_element_by_name("pass").send_keys("secret")
+        wd.find_element_by_xpath("//input[@value='Login']").click()
+
     def open_main_page(self, wd):
-        # open main page
         wd.get("http://localhost/addressbook/index.php")
 
     def tearDown(self):
