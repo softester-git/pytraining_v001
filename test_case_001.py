@@ -10,8 +10,7 @@ class CreateGroup(unittest.TestCase):
     
     def test_create_group(self):
         wd = self.wd
-        # open main page
-        wd.get("http://localhost/addressbook/index.php")
+        self.open_main_page(wd)
         # login
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
@@ -40,6 +39,9 @@ class CreateGroup(unittest.TestCase):
         # logout
         wd.find_element_by_link_text("Logout").click()
 
+    def open_main_page(self, wd):
+        # open main page
+        wd.get("http://localhost/addressbook/index.php")
 
     def tearDown(self):
         self.wd.quit()
