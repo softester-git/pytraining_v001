@@ -10,37 +10,41 @@ class CreateGroup(unittest.TestCase):
 
     
     def test_create_group(self):
-        wd = self.wd
-        self.open_main_page(wd)
-        self.login(wd, user_name="admin", user_pass="secret")
-        self.fill_group_form(wd, Group(group_name="group_name_001", group_header="group_header_001", group_footer="group_footer_001"))
-        self.submit_form(wd)
-        self.return_to_groups_page(wd)
-        self.logout(wd)
+        self.open_main_page()
+        self.login(user_name="admin", user_pass="secret")
+        self.fill_group_form(Group(group_name="group_name_001", group_header="group_header_001", group_footer="group_footer_001"))
+        self.submit_form()
+        self.return_to_groups_page()
+        self.logout()
 
 
     def test_create_empty_group(self):
-        wd = self.wd
+        self.open_main_page()
         self.login(wd, user_name="admin", user_pass="secret")
         self.fill_group_form(wd, Group(group_name="", group_header="", group_footer=""))
+        self.submit_form()
+        self.return_to_groups_page()
         self.logout(wd)
 
 
     def logout(self, wd):
+        wd = self.wd
         wd.find_element_by_link_text("Logout").click()
 
 
     def return_to_groups_page(self, wd):
+        wd = self.wd
         wd.find_element_by_link_text("group page").click()
         wd.find_element_by_xpath("//div[@id='content']/form/span").click()
 
 
     def submit_form(self, wd):
+        wd = self.wd
         wd.find_element_by_name("submit").click()
 
 
     def fill_group_form(self, wd, group):
-        self.open_main_page(wd)
+        wd = self.wd
         self.open_groups_page(wd)
         self.init_create_group(wd)
         wd.find_element_by_name("group_name").click()
@@ -55,14 +59,18 @@ class CreateGroup(unittest.TestCase):
 
 
     def init_create_group(self, wd):
+        wd = self.wd
         wd.find_element_by_name("new").click()
 
 
     def open_groups_page(self, wd):
+        wd = self.wd
         wd.find_element_by_link_text("groups").click()
 
 
     def login(self, wd, user_name, user_pass):
+        wd = self.wd
+        self.open_main_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(user_name)
@@ -73,10 +81,12 @@ class CreateGroup(unittest.TestCase):
 
 
     def open_main_page(self, wd):
+        wd = self.wd
         wd.get("http://localhost/addressbook/index.php")
 
 
     def tearDown(self):
+        wd = self.wd
         self.wd.quit()
 
 if __name__ == "__main__":
