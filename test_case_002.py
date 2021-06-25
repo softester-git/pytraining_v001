@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
-from selenium import webdriver
-import unittest
+import pytest
 from contact import Contact
+from application import Application
+
+
+@pytest.fixture
+def app(request):
+    fixture = Application()
+    request.addfinalizer(fixture.destroy)
+    return fixture
 
 class CreateContact(unittest.TestCase):
     def setUp(self):
@@ -10,17 +17,15 @@ class CreateContact(unittest.TestCase):
 
     def test_create_contact(self):
         wd = self.wd
-        self.open_main_page(wd)
         self.login(wd)
-        #self.fill_form(wd, Contact(contact_title="title_001", contact_company="company_001", contact_address="address_001"))
-        self.fill_form(wd, contact_title="title_001", contact_company="company_001", contact_address="address_001")
-        wd.find_element_by_link_text("home page").click()
+        self.fill_form(wd, Contact(contact_title="title1", contact_company="company1", contact_address="address1"))
         self.logout(wd)
 
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
 
     def fill_form(self, wd, contact_title, contact_company, contact_address):
+
         # fill text fields
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -104,8 +109,11 @@ class CreateContact(unittest.TestCase):
         wd.find_element_by_name("notes").send_keys("notes_001")
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
+        wd.find_element_by_link_text("home page").click()
+
 
     def login(self, wd):
+        self.open_main_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("admin")
