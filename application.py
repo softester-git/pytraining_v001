@@ -124,7 +124,7 @@ class Application:
         wd.find_element_by_name("notes").send_keys("notes_001")
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         wd.find_element_by_link_text("home page").click()
-
+        self.submit_form()
 
     def init_create_group(self):
         wd = self.wd
