@@ -12,12 +12,14 @@ def app(request):
 
 
 def test_create_contact(app):
-    app.login(user="admin",passw="secret")
-    app.fill_form(Contact(contact_title="title1", contact_company="company1", contact_address="address1"))
+    app.login(user_name="admin",user_pass="secret")
+    #app.fill_form(Contact(contact_title="title1", contact_company="company1", contact_address="address1"))
+    app.fill_form(contact_title="title1", contact_company="company1", contact_address="address1")
     app.logout()
 
 
 def test_create_empty_contact(app):
-    app.login(user="admin",passw="secret")
-    app.fill_form(Contact(contact_title="", contact_company="", contact_address=""))
+    app.login(user_name="admin",user_pass="secret")
+    #app.fill_form(Contact(contact_title="", contact_company="", contact_address=""))
+    app.fill_form(contact_title="", contact_company="", contact_address="")
     app.logout()

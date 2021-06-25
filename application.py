@@ -40,7 +40,7 @@ class Application:
 
     def fill_form(self, contact_title, contact_company, contact_address):
         wd = self.wd
-
+        self.open_contact_page()
         # fill text fields
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -57,7 +57,7 @@ class Application:
         #wd.find_element_by_name("photo").click()
         #wd.find_element_by_xpath("//input[@type='file']").click()
         # wd.find_element_by_name("photo").clear()
-        wd.find_element_by_name("photo").send_keys("/opt/lampp/htdocs/addressbook/header.jpg")
+        wd.find_element_by_name("photo").send_keys("C:\\test.png")
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
         wd.find_element_by_name("title").send_keys(contact_title)
@@ -103,10 +103,10 @@ class Application:
         wd.find_element_by_name("byear").send_keys("1977")
         wd.find_element_by_name("aday").click()
         #Select(wd.find_element_by_name("aday")).select_by_visible_text("1")
-        wd.find_element_by_xpath("//div[@id='content']/form/select[3]/option[3]").click()
+        wd.find_element_by_xpath("//div[@id='content']/form/select[3]/option[1]").click()
         wd.find_element_by_name("amonth").click()
         #Select(wd.find_element_by_name("amonth")).select_by_visible_text("January")
-        wd.find_element_by_xpath("//div[@id='content']/form/select[4]/option[2]").click()
+        wd.find_element_by_xpath("//div[@id='content']/form/select[4]/option[1]").click()
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
         wd.find_element_by_name("ayear").send_keys("1900")
@@ -134,6 +134,11 @@ class Application:
     def open_groups_page(self):
         wd = self.wd
         wd.find_element_by_link_text("groups").click()
+
+
+    def open_contact_page(self):
+        wd = self.wd
+        wd.find_element_by_link_text("add new").click()
 
 
     def login(self, user_name, user_pass):
