@@ -6,22 +6,18 @@ class Application:
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-
     def logout(self):
         wd = self.wd
         wd.find_element_by_link_text("Logout").click()
-
 
     def return_to_groups_page(self):
         wd = self.wd
         wd.find_element_by_link_text("group page").click()
         #wd.find_element_by_xpath("//div[@id='content']/form/span").click()
 
-
     def submit_form(self):
         wd = self.wd
         wd.find_element_by_name("submit").click()
-
 
     def fill_group_form(self, group):
         wd = self.wd
@@ -36,7 +32,6 @@ class Application:
         wd.find_element_by_name("group_footer").send_keys(group.group_footer)
         self.submit_form()
         self.return_to_groups_page()
-
 
     def fill_form(self, contact_title, contact_company, contact_address):
         wd = self.wd
@@ -130,16 +125,13 @@ class Application:
         wd = self.wd
         wd.find_element_by_name("new").click()
 
-
     def open_groups_page(self):
         wd = self.wd
         wd.find_element_by_link_text("groups").click()
 
-
     def open_contact_page(self):
         wd = self.wd
         wd.find_element_by_link_text("add new").click()
-
 
     def login(self, user_name, user_pass):
         wd = self.wd
@@ -152,11 +144,9 @@ class Application:
         wd.find_element_by_name("pass").send_keys(user_pass)
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
-
     def open_main_page(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/index.php")
-
 
     def destroy(self):
         wd = self.wd
