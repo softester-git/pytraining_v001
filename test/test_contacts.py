@@ -18,8 +18,8 @@ def test_create_contact(app):
     app.logout()
 
 
-def test_create_empty_contact(app):
-    app.login(user_name="admin", user_pass="secret")
-    # Использование модели Contact
-    app.fill_contact_form(Contact(fname="", lname="", addr="", email=""))
-    app.logout()
+#def test_create_empty_contact(app):
+#    app.login(user_name="admin", user_pass="secret")
+#    # Использование модели Contact
+#    app.fill_contact_form(Contact(fname="", lname="", addr="", email=""))
+#    app.logout()

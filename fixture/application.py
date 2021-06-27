@@ -1,5 +1,5 @@
 from selenium import webdriver
-
+import os
 
 class Application:
     def __init__(self):
@@ -34,6 +34,7 @@ class Application:
         self.return_to_groups_page()
 
     def fill_contact_form(self, contact):
+        print(contact)
         wd = self.wd
         self.open_contact_page()
         # fill text fields
@@ -52,7 +53,7 @@ class Application:
         #wd.find_element_by_name("photo").click()
         #wd.find_element_by_xpath("//input[@type='file']").click()
         # wd.find_element_by_name("photo").clear()
-        wd.find_element_by_name("photo").send_keys("C:\\test.png")
+        wd.find_element_by_name("photo").send_keys(os.path.abspath('facebook.png'))
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
         wd.find_element_by_name("title").send_keys("Title")
@@ -119,7 +120,7 @@ class Application:
         wd.find_element_by_name("notes").send_keys("notes_001")
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         wd.find_element_by_link_text("home page").click()
-        self.submit_form()
+        #self.submit_form()
 
     def init_create_group(self):
         wd = self.wd
