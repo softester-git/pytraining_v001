@@ -33,19 +33,19 @@ class Application:
         self.submit_form()
         self.return_to_groups_page()
 
-    def fill_contact_form(self, fname, lname, addr, email):
+    def fill_contact_form(self, contact):
         wd = self.wd
         self.open_contact_page()
         # fill text fields
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(fname)
+        wd.find_element_by_name("firstname").send_keys(contact.fname)
         wd.find_element_by_name("middlename").click()
         wd.find_element_by_name("middlename").clear()
         wd.find_element_by_name("middlename").send_keys("MiddleName")
         wd.find_element_by_name("lastname").click()
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(lname)
+        wd.find_element_by_name("lastname").send_keys(contact.lname)
         wd.find_element_by_name("nickname").click()
         wd.find_element_by_name("nickname").clear()
         wd.find_element_by_name("nickname").send_keys("Nickname_001")
@@ -61,7 +61,7 @@ class Application:
         wd.find_element_by_name("company").send_keys("Company")
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(addr)
+        wd.find_element_by_name("address").send_keys(contact.addr)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
         wd.find_element_by_name("home").send_keys("home_001")
@@ -76,7 +76,7 @@ class Application:
         wd.find_element_by_name("fax").send_keys("fax_001")
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(email)
+        wd.find_element_by_name("email").send_keys(contact.email)
         wd.find_element_by_name("email2").click()
         wd.find_element_by_name("email2").clear()
         wd.find_element_by_name("email2").send_keys("email2")
