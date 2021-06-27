@@ -1,5 +1,6 @@
 from selenium import webdriver
 import os
+from time import sleep
 
 class Application:
     def __init__(self):
@@ -17,7 +18,39 @@ class Application:
 
     def submit_form(self):
         wd = self.wd
-        wd.find_element_by_name("submit").click()
+        #wd.find_element_by_name("submit").click()
+        wd.find_element_by_xpath("//input[@name='submit']").click()
+
+    def open_contact_page(self):
+        wd = self.wd
+        wd.find_element_by_link_text("add new").click()
+
+    def return_to_home(self):
+        wd = self.wd
+        wd.find_element_by_link_text("home").click()
+
+    def init_create_group(self):
+        wd = self.wd
+        wd.find_element_by_name("new").click()
+
+    def open_groups_page(self):
+        wd = self.wd
+        wd.find_element_by_link_text("groups").click()
+
+    def login(self, user_name, user_pass):
+        wd = self.wd
+        self.open_main_page()
+        wd.find_element_by_name("user").click()
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys(user_name)
+        wd.find_element_by_name("pass").click()
+        wd.find_element_by_name("pass").clear()
+        wd.find_element_by_name("pass").send_keys(user_pass)
+        wd.find_element_by_xpath("//input[@value='Login']").click()
+
+    def open_main_page(self):
+        wd = self.wd
+        wd.get("http://localhost/addressbook/index.php")
 
     def fill_group_form(self, group):
         wd = self.wd
@@ -49,7 +82,7 @@ class Application:
         wd.find_element_by_name("lastname").send_keys(contact.lname)
         wd.find_element_by_name("nickname").click()
         wd.find_element_by_name("nickname").clear()
-        wd.find_element_by_name("nickname").send_keys("Nickname_001")
+        wd.find_element_by_name("nickname").send_keys("Nickname")
         #wd.find_element_by_name("photo").click()
         #wd.find_element_by_xpath("//input[@type='file']").click()
         # wd.find_element_by_name("photo").clear()
@@ -65,7 +98,7 @@ class Application:
         wd.find_element_by_name("address").send_keys(contact.addr)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys("home_001")
+        wd.find_element_by_name("home").send_keys("home")
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
         wd.find_element_by_name("mobile").send_keys("mobile_001")
@@ -118,36 +151,9 @@ class Application:
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys("notes_001")
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
-        wd.find_element_by_link_text("home page").click()
-        #self.submit_form()
-
-    def init_create_group(self):
-        wd = self.wd
-        wd.find_element_by_name("new").click()
-
-    def open_groups_page(self):
-        wd = self.wd
-        wd.find_element_by_link_text("groups").click()
-
-    def open_contact_page(self):
-        wd = self.wd
-        wd.find_element_by_link_text("add new").click()
-
-    def login(self, user_name, user_pass):
-        wd = self.wd
-        self.open_main_page()
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(user_name)
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(user_pass)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
-
-    def open_main_page(self):
-        wd = self.wd
-        wd.get("http://localhost/addressbook/index.php")
+        #wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        self.submit_form()
+        #self.return_to_home()
 
     def destroy(self):
         wd = self.wd
