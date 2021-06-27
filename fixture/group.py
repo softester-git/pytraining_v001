@@ -6,11 +6,6 @@ class GroupHelper:
     def return_to_groups_page(self):
         wd = self.app.wd
         wd.find_element_by_link_text("group page").click()
-        #wd.find_element_by_xpath("//div[@id='content']/form/span").click()
-
-    def return_to_home(self):
-        wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
 
     def init_create_group(self):
         wd = self.app.wd
@@ -34,3 +29,7 @@ class GroupHelper:
         self.app.submit_form()
         self.return_to_groups_page()
 
+    def submit_form(self):
+        wd = self.app.wd
+        #wd.find_element_by_name("submit").click()
+        wd.find_element_by_xpath("//input[@name='submit']").click()

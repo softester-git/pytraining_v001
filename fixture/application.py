@@ -21,13 +21,15 @@ class Application:
         wd = self.wd
         wd.find_element_by_link_text("add new").click()
 
+    def return_to_home(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
 
     def open_main_page(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/index.php")
 
     def fill_contact_form(self, contact):
-        print(contact)
         wd = self.wd
         self.open_contact_page()
         # fill text fields
@@ -107,6 +109,7 @@ class Application:
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys("notes_001")
         self.submit_form()
+        self.return_to_home()
 
     def destroy(self):
         wd = self.wd
