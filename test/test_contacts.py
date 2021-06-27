@@ -12,14 +12,14 @@ def app(request):
 
 
 def test_create_contact(app):
-    app.login(user_name="admin", user_pass="secret")
+    app.session.login(user_name="admin", user_pass="secret")
     # Использование модели Contact
-    app.fill_contact_form(Contact(fname="Firstname!", lname="Lastname", addr="address1", email="test@test.test"))
-    app.logout()
+    app.fill_contact_form(Contact(fname="FirstName", lname="LastName", addr="Address", email="test@test.test"))
+    app.session.logout()
 
 
-def test_create_empty_contact(app):
-    app.login(user_name="admin", user_pass="secret")
+#def test_create_empty_contact(app):
+#    app.session.login(user_name="admin", user_pass="secret")
     # Использование модели Contact
-    app.fill_contact_form(Contact(fname="", lname="", addr="", email=""))
-    app.logout()
+#    app.fill_contact_form(Contact(fname="", lname="", addr="", email=""))
+#    app.session.logout()

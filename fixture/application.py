@@ -1,15 +1,14 @@
 from selenium import webdriver
+from fixture.session import SessionHelper
 import os
-from time import sleep
+from selenium.webdriver.support.select import Select
 
 class Application:
+
     def __init__(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
-
-    def logout(self):
-        wd = self.wd
-        wd.find_element_by_link_text("Logout").click()
+        self.session = SessionHelper(self)
 
     def return_to_groups_page(self):
         wd = self.wd
@@ -36,17 +35,6 @@ class Application:
     def open_groups_page(self):
         wd = self.wd
         wd.find_element_by_link_text("groups").click()
-
-    def login(self, user_name, user_pass):
-        wd = self.wd
-        self.open_main_page()
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(user_name)
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(user_pass)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
 
     def open_main_page(self):
         wd = self.wd
@@ -122,26 +110,21 @@ class Application:
         wd.find_element_by_name("homepage").send_keys("homepage")
         # fill select fields
         wd.find_element_by_name("bday").click()
-        #Select(wd.find_element_by_name("bday")).select_by_visible_text("1")
-        wd.find_element_by_xpath("//option[@value='1']").click()
+        Select(wd.find_element_by_name("bday")).select_by_visible_text("1")
         wd.find_element_by_name("bmonth").click()
-        #Select(wd.find_element_by_name("bmonth")).select_by_visible_text("January")
-        wd.find_element_by_xpath("//option[@value='January']").click()
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text("January")
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
         wd.find_element_by_name("byear").send_keys("1977")
         wd.find_element_by_name("aday").click()
-        #Select(wd.find_element_by_name("aday")).select_by_visible_text("1")
-        wd.find_element_by_xpath("//div[@id='content']/form/select[3]/option[1]").click()
+        Select(wd.find_element_by_name("aday")).select_by_visible_text("5")
         wd.find_element_by_name("amonth").click()
-        #Select(wd.find_element_by_name("amonth")).select_by_visible_text("January")
-        wd.find_element_by_xpath("//div[@id='content']/form/select[4]/option[1]").click()
+        Select(wd.find_element_by_name("amonth")).select_by_visible_text("March")
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
         wd.find_element_by_name("ayear").send_keys("1900")
         wd.find_element_by_name("new_group").click()
-        #Select(wd.find_element_by_name("new_group")).select_by_visible_text("group_name_001")
-        wd.find_element_by_xpath("//div[@id='content']/form/select[5]/option[5]").click()
+        Select(wd.find_element_by_name("new_group")).select_by_visible_text("group_name_1")
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
         wd.find_element_by_name("address2").send_keys("address_001")
@@ -151,9 +134,7 @@ class Application:
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys("notes_001")
-        #wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         self.submit_form()
-        #self.return_to_home()
 
     def destroy(self):
         wd = self.wd
