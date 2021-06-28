@@ -39,7 +39,7 @@ class ContactHelper:
         #wd.find_element_by_name("photo").click()
         #wd.find_element_by_xpath("//input[@type='file']").click()
         # wd.find_element_by_name("photo").clear()
-        wd.find_element_by_name("photo").send_keys(os.path.abspath('facebook.png'))
+        #wd.find_element_by_name("photo").send_keys(os.path.abspath('facebook.png'))
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
         wd.find_element_by_name("title").send_keys("Title")
