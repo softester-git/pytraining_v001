@@ -17,7 +17,7 @@ def test_create_contact(app):
     app.session.logout()
 
 
-#def test_create_empty_contact(app):
+def test_create_empty_contact(app):
     app.session.login(user_name="admin", user_pass="secret")
     app.contact.create(Contact(fname="", lname="", addr="", email=""))
     app.session.logout()
