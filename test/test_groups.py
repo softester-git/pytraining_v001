@@ -8,7 +8,7 @@ def test_create_group(app):
     app.session.logout()
 
 
-def test_create_empty_group(app):
-    app.session.login(user_name="admin", user_pass="secret")
-    app.group.create(Group(group_name="", group_header="", group_footer=""))
-    app.session.logout()
+#def test_create_empty_group(app):
+#    app.session.login(user_name="admin", user_pass="secret")
+#    app.group.create(Group(group_name="", group_header="", group_footer=""))
+#    app.session.logout()
