@@ -34,7 +34,13 @@ class Application:
             else:
                 wd.find_element_by_name(field_name).send_keys(text)
 
-
     def destroy(self):
         wd = self.wd
         self.wd.quit()
+
+    def is_valid(self):
+        try:
+            self.wd.current_url
+            return True
+        except:
+            return False
