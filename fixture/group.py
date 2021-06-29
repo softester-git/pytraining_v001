@@ -57,8 +57,8 @@ class GroupHelper:
     def fill_group_form(self, group):
         wd = self.app.wd
         self.change_field_value("group_name", group.group_name)
-        self.change_field_value("header_name", group.group_header)
-        self.change_field_value("footer_name", group.group_footer)
+        self.change_field_value("group_header", group.group_header)
+        self.change_field_value("group_footer", group.group_footer)
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
