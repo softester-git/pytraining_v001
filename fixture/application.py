@@ -9,7 +9,6 @@ class Application:
 
     def __init__(self):
         self.wd = webdriver.Firefox()
-        self.wd.implicitly_wait(10)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
@@ -35,7 +34,6 @@ class Application:
                 wd.find_element_by_name(field_name).send_keys(text)
 
     def destroy(self):
-        wd = self.wd
         self.wd.quit()
 
     def is_valid(self):
