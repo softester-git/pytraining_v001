@@ -73,3 +73,8 @@ class ContactHelper:
         self.app.change_field_value("address2", contact.address2)
         self.app.change_field_value("phone2", contact.phone2)
         self.app.change_field_value("notes", contact.notes)
+
+    def count(self):
+        wd = self.app.wd
+        self.return_to_home()
+        return len(wd.find_elements_by_xpath("//input[@value='Delete']"))
