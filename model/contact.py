@@ -26,3 +26,9 @@ class Contact:
         self.phone2 = phone2
         self.notes = notes
         self.id = id
+
+    def __repr__(self):
+        return("%s:%s:%s" % (self.id, self.fname, self.lname))
+
+    def __eq__(self, other):
+        return(self.id is None or other.id is None or self.id == other.id and self.fname == other.fname and self.lname == other.lname)

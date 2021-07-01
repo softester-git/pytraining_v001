@@ -4,3 +4,9 @@ class Group:
         self.group_header = group_header
         self.group_footer = group_footer
         self.group_id = group_id
+
+    def __repr__(self):
+        return("%s:%s" % (self.group_id, self.group_name))
+
+    def __eq__(self, other):
+        return(self.group_id is None or other.group_id is None or self.group_id == other.group_id and self.group_name == other.group_name)

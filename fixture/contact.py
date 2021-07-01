@@ -96,5 +96,4 @@ class ContactHelper:
             last_name = cells[2].text
             id = cells[0].find_element_by_tag_name("input").get_attribute("value")
             contacts.append(Contact(fname=first_name, lname=last_name, id=id))
-            print(first_name + " - " + last_name + " - " + id)
         return contacts
