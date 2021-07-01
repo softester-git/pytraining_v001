@@ -1,4 +1,3 @@
-from time import sleep
 from model.group import Group
 
 
@@ -39,9 +38,7 @@ class GroupHelper:
     def delete_first_group(self):
         wd = self.app.wd
         self.open_groups_page()
-        sleep(5)
         self.select_first_group()
-        sleep(5)
         # submit deletion
         wd.find_element_by_name("delete").click()
         self.return_to_groups_page()
