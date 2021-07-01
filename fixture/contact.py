@@ -1,3 +1,5 @@
+import time
+
 from model.contact import Contact
 
 
@@ -86,6 +88,7 @@ class ContactHelper:
     def get_contact_list(self):
         wd = self.app.wd
         self.return_to_home()
+        wd.find_elements_by_name("entry")
         contacts = []
         for row in wd.find_elements_by_name("entry"):
             cells = row.find_elements_by_tag_name("td")
