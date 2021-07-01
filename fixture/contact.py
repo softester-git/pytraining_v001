@@ -1,3 +1,6 @@
+from time import sleep
+
+
 class ContactHelper:
 
     def __init__(self, app):
@@ -13,7 +16,7 @@ class ContactHelper:
 
     def open_contact_page(self):
         wd = self.app.wd
-        if not wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_name("submit")) > 0:
+        if not wd.current_url.endswith("/edit.php") and not len(wd.find_elements_by_name("submit")) > 0:
             wd.find_element_by_link_text("add new").click()
 
     def return_to_home(self):

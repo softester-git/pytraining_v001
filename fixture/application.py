@@ -3,7 +3,7 @@ from fixture.session import SessionHelper
 from fixture.group import GroupHelper
 from fixture.contact import ContactHelper
 from selenium.webdriver.support.select import Select
-
+import os
 
 class Application:
 
@@ -31,7 +31,7 @@ class Application:
                 wd.find_element_by_name(field_name).click()
                 Select(wd.find_element_by_name(field_name)).select_by_visible_text(text)
             else:
-                wd.find_element_by_name(field_name).send_keys(text)
+                wd.find_element_by_name(field_name).send_keys(os.path.abspath(text))
 
     def destroy(self):
         self.wd.quit()
