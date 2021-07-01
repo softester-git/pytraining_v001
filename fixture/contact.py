@@ -1,4 +1,4 @@
-from time import sleep
+from model.contact import Contact
 
 
 class ContactHelper:
@@ -82,3 +82,15 @@ class ContactHelper:
         wd = self.app.wd
         self.return_to_home()
         return len(wd.find_elements_by_name("selected[]"))
+
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.return_to_home()
+        contacts = []
+        for row in wd.find_elements_by_name("entry"):
+            cells = row.find_elements_by_tag_name("td")
+            first_name = cells[1].text
+            last_name = cells[2].text
+            id = cells[0].find_element_by_tag_name("input").get_attribute("value")
+            contacts.append(Contact(fname=first_name, lname=last_name, id=id))
+        return contacts

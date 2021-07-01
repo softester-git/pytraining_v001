@@ -1,5 +1,5 @@
 class Contact:
-    def __init__(self, fname=None, mname=None, lname=None, nname=None, photo=None, title=None, company=None, addr=None, home=None, mobile=None, work=None, fax=None, email=None, email2=None, email3=None, homepage=None, bmonth=None, bday=None, amonth=None, aday=None, byear=None, ayear=None, address2=None, phone2=None, notes=None):
+    def __init__(self, fname=None, mname=None, lname=None, nname=None, photo=None, title=None, company=None, addr=None, home=None, mobile=None, work=None, fax=None, email=None, email2=None, email3=None, homepage=None, bmonth=None, bday=None, amonth=None, aday=None, byear=None, ayear=None, address2=None, phone2=None, notes=None, id=None):
         self.fname = fname
         self.mname = mname
         self.lname = lname
@@ -25,3 +25,4 @@ class Contact:
         self.address2 = address2
         self.phone2 = phone2
         self.notes = notes
+        self.id = id
