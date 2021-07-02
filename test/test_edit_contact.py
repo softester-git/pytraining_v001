@@ -11,4 +11,4 @@ def test_edit_contact(app):
     sleep(1)
     new_contacts = app.contact.get_contact_list()
     assert len(old_contacts) == len(new_contacts)
-    assert old_contacts != new_contacts
+    assert old_contacts is not new_contacts

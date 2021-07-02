@@ -12,4 +12,4 @@ def test_edit_group(app):
     sleep(1)
     new_groups = app.group.get_group_list()
     assert len(old_groups) == len(new_groups)
-    assert old_groups != new_groups
+    assert old_groups is not new_groups
