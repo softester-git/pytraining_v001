@@ -66,6 +66,17 @@ class GroupHelper:
         self.return_to_groups_page()
         self.group_cache = None
 
+    def edit_group_by_index(self, group, index):
+        wd = self.app.wd
+        self.open_groups_page()
+        self.select_group_by_index(index)
+        # open edit form
+        wd.find_element_by_name("edit").click()
+        self.fill_group_form(group)
+        self.submit_edit_form()
+        self.return_to_groups_page()
+        self.group_cache = None
+
     def fill_group_form(self, group):
         self.app.change_field_value("group_name", group.group_name)
         self.app.change_field_value("group_header", group.group_header)

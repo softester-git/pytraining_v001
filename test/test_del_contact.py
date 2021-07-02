@@ -1,7 +1,6 @@
-from random import randrange
 from model.contact import Contact
 from time import sleep
-
+from random import randrange
 
 def test_delete_some_contact(app):
     if app.contact.count() == 0:
