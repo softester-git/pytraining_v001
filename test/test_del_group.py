@@ -1,6 +1,6 @@
 from model.group import Group
 from random import randrange
-from time import sleepLj,fdktyj
+from time import sleep
 
 def test_delete_some_group(app):
     if app.group.count() == 0:
