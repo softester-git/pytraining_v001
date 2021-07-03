@@ -1,3 +1,5 @@
+import time
+
 from model.contact import Contact
 
 class ContactHelper:
@@ -75,6 +77,14 @@ class ContactHelper:
         self.return_to_home()
         self.contact_cache = None
 
+    def open_edit_contact_by_index(self, index):
+        wd = self.app.wd
+        self.return_to_home()
+        # open edit form
+        time.sleep(1)
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(index) + "]/td[8]/a/img")
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(index) + "]/td[8]/a/img").click()
+
     def fill_contact_form(self, contact):
         self.app.change_field_value("firstname", contact.fname)
         self.app.change_field_value("middlename", contact.mname)
@@ -114,15 +124,44 @@ class ContactHelper:
             wd = self.app.wd
             self.return_to_home()
             wd.find_elements_by_name("entry")
-            contact_cache = []
+            self.contact_cache = []
             for row in wd.find_elements_by_name("entry"):
                 cells = row.find_elements_by_tag_name("td")
-                first_name = cells[1].text
-                last_name = cells[2].text
-                id = cells[0].find_element_by_tag_name("input").get_attribute("value")
-                contact_cache.append(Contact(fname=first_name, lname=last_name, id=id))
-        return contact_cache
+                contact_id = cells[0].find_element_by_tag_name("input").get_attribute("value")
+                last_name = cells[1].text
+                first_name = cells[2].text
+                address = cells[3].text
+                all_emails = cells[4].text.splitlines()
+                all_phones = cells[5].text.splitlines()
+                self.contact_cache.append(Contact(fname=first_name,
+                                                  lname=last_name,
+                                                  id=contact_id,
+                                                  addr=address,
+                                                  email=all_emails[0] if len(all_emails) > 0 else None,
+                                                  home=all_phones[0] if len(all_phones) > 0 else None))
+        return self.contact_cache
 
     def select_contact_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
+
+    def get_contact_info_from_edit_page(self, index):
+        wd = self.app.wd
+        self.open_edit_contact_by_index(index)
+        firstname_value = wd.find_element_by_name("firstname").get_attribute("value")
+        firstname = firstname_value if firstname_value != "" else None
+        lastname_value = wd.find_element_by_name("lastname").get_attribute("value")
+        lastname = lastname_value if lastname_value != "" else None
+        id_value = wd.find_element_by_name("id").get_attribute("value")
+        id = id_value if id_value != "" else None
+        homephone_value = wd.find_element_by_name("home").get_attribute("value")
+        homephone = homephone_value if homephone_value != "" else None
+        workphone_value = wd.find_element_by_name("work").get_attribute("value")
+        workphone = workphone_value if workphone_value != "" else None
+        mobilephone_value = wd.find_element_by_name("mobile").get_attribute("value")
+        mobilephone = mobilephone_value if mobilephone_value != "" else None
+        secondaryphone_value = wd.find_element_by_name("phone2").get_attribute("value")
+        secondaryphone = secondaryphone_value if secondaryphone_value != "" else None
+        return(Contact(fname=firstname, lname=lastname, id=id,
+                       home=homephone, work=workphone, mobile=mobilephone, phone2=secondaryphone))
+
