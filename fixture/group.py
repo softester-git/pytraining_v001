@@ -5,6 +5,9 @@ class GroupHelper:
     def __init__(self, app):
         self.app = app
 
+    def __repr__(self):
+        return("%s:%s:%s:%s" % (self.app.group_name, self.app.group_header, self.app.group_footer, self.app.group_id))
+
     def return_to_groups_page(self):
         wd = self.app.wd
         if not wd.current_url.endswith("/group.php") and not len(wd.find_elements_by_name("new")) > 0:

@@ -8,6 +8,9 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
+    def __repr__(self):
+        return("%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s" % (self.app.id, self.app.fname, self.app.mname, self.app.lname, self.app.nname, self.app.photo, self.app.title, self.app.company, self.app.addr, self.app.home, self.app.work, self.app.mobile, self.app.email, self.app.email2, self.app.email3, self.app.homepage, self.app.bmonth, self.app.bday, self.app.amonth, self.app.aday, self.app.byear, self.app.ayear, self.app.address2, self.app.phone2, self.app.notes))
+
     def submit_form(self):
         wd = self.app.wd
         wd.find_element_by_xpath("//input[@name='submit']").click()
