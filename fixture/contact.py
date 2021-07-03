@@ -1,4 +1,5 @@
 import time
+import re
 
 from model.contact import Contact
 
@@ -79,11 +80,21 @@ class ContactHelper:
 
     def open_edit_contact_by_index(self, index):
         wd = self.app.wd
+        index += 2
         self.return_to_home()
         # open edit form
         time.sleep(1)
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(index) + "]/td[8]/a/img")
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(index) + "]/td[8]/a/img").click()
+
+    def open_view_contact_by_index(self, index):
+        wd = self.app.wd
+        index += 2
+        self.return_to_home()
+        # open edit form
+        time.sleep(1)
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(index) + "]/td[7]/a/img")
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(index) + "]/td[7]/a/img").click()
 
     def fill_contact_form(self, contact):
         self.app.change_field_value("firstname", contact.fname)
@@ -138,7 +149,13 @@ class ContactHelper:
                                                   id=contact_id,
                                                   addr=address,
                                                   email=all_emails[0] if len(all_emails) > 0 else None,
-                                                  home=all_phones[0] if len(all_phones) > 0 else None))
+                                                  email2=all_emails[1] if len(all_emails) > 1 else None,
+                                                  email3=all_emails[2] if len(all_emails) > 2 else None,
+                                                  home=all_phones[0] if len(all_phones) > 0 else None,
+                                                  mobile=all_phones[1] if len(all_phones) > 1 else None,
+                                                  work=all_phones[2] if len(all_phones) > 2 else None,
+                                                  phone2=all_phones[3] if len(all_phones) > 3 else None))
+
         return self.contact_cache
 
     def select_contact_by_index(self, index):
@@ -165,3 +182,12 @@ class ContactHelper:
         return(Contact(fname=firstname, lname=lastname, id=id,
                        home=homephone, work=workphone, mobile=mobilephone, phone2=secondaryphone))
 
+    def get_contact_from_view_page(self, index):
+        wd = self.app.wd
+        self.open_view_contact_by_index(index)
+        text = wd.find_element_by_id("content").text
+        home = re.search("H: (.*)", text).group(1)
+        work = re.search("W: (.*)", text).group(1)
+        mobile = re.search("M: (.*)", text).group(1)
+        phone2 = re.search("P: (.*)", text).group(1)
+        return(Contact(home=home, work=work, mobile=mobile, phone2=phone2))
