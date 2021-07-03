@@ -16,10 +16,13 @@ def test_create_group(app):
 
 def test_create_empty_group(app):
     old_groups = app.group.get_group_list()
+    old_groups_count = app.group.count()
     group = Group(group_name="", group_header="", group_footer="")
     app.group.create(group)
     assert len(old_groups) + 1 == app.group.count()
     sleep(1)
     new_groups = app.group.get_group_list()
+    new_groups_count = app.group.count()
+    assert old_groups_count + 1 == new_groups_count
     old_groups.append(group)
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
