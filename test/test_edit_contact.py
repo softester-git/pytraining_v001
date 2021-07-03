@@ -8,7 +8,8 @@ def test_edit_contact(app):
         app.contact.create(Contact(fname="FirstName", lname="LastName", addr="Address", email="test@test.test"))
     old_contacts_count = app.contact.count()
     old_contacts = app.contact.get_contact_list()
-    index = randrange(len(old_contacts))
+    rand_value = randrange(len(old_contacts))
+    index = rand_value if rand_value > 1 else 2
     app.contact.edit_contact_by_index(Contact(fname="NewFirstName", lname="NewLastName", email3="newemail3@test.test", byear="2000"), index)
     sleep(1)
     new_contacts_count = app.contact.count()
