@@ -12,4 +12,4 @@ def test_delete_some_contact(app):
     sleep(1)
     assert old_contacts_count - 1 == app.contact.count()
     new_contacts = app.contact.get_contact_list()
-    assert sorted(old_contacts, key=Contact.id_or_max) is not sorted(new_contacts, key=Contact.id_or_max)
+    assert sorted(old_contacts, key=Contact.id_or_max) != sorted(new_contacts, key=Contact.id_or_max)

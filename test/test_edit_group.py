@@ -13,5 +13,5 @@ def test_edit_group(app):
     sleep(1)
     assert old_groups_count == app.group.count()
     new_groups = app.group.get_group_list()
-    assert sorted(old_groups, key=Group.id_or_max) is not sorted(new_groups, key=Group.id_or_max)
+    assert sorted(old_groups, key=Group.id_or_max) != sorted(new_groups, key=Group.id_or_max)
 
