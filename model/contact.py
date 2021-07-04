@@ -57,7 +57,7 @@ class Contact:
                #self.byear == other.byear and
                #self.ayear == other.ayear and
                #self.address2 == other.address2 and
-               self.phone2 == other.phone2 and
+               self.phone2 == other.phone2
                #self.notes == other.notes
                )
 
