@@ -33,7 +33,33 @@ class Contact:
         return("%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s" % (self.id, self.fname, self.mname, self.lname, self.nname, self.photo, self.title, self.company, self.addr, self.home, self.work, self.mobile, self.email, self.email2, self.email3, self.homepage, self.bmonth, self.bday, self.amonth, self.aday, self.byear, self.ayear, self.address2, self.phone2, self.notes))
 
     def __eq__(self, other):
-        return(self.id == other.id and self.fname == other.fname and self.mname == other.mname and self.lname == other.lname and self.nname == other.nname and self.photo == other.photo and self.title == other.title and self.company == other.company and self.addr == other.addr and self.home == other.home and self.mobile == other.mobile and self.work == other.work and self.fax == other.fax and self.email == other.email and self.email2 == other.email2 and self.email3 == other.email3 and self.homepage == other.homepage and self.bmonth == other.bmonth and self.bday == other.bday and self.amonth == other.amonth and self.aday == other.aday and self.byear == other.byear and self.ayear == other.ayear and self.address2 == other.address2 and self.phone2 == other.phone2 and self.notes == other.notes)
+        return(self.id == other.id and
+               self.fname == other.fname and
+               self.mname == other.mname and
+               self.lname == other.lname and
+               self.nname == other.nname and
+               #self.photo == other.photo and
+               #self.title == other.title and
+               self.company == other.company and
+               self.addr == other.addr and
+               self.home == other.home and
+               self.mobile == other.mobile and
+               self.work == other.work and
+               #self.fax == other.fax and
+               self.email == other.email and
+               self.email2 == other.email2 and
+               self.email3 == other.email3 and
+               self.homepage == other.homepage and
+               #self.bmonth == other.bmonth and
+               #self.bday == other.bday and
+               #self.amonth == other.amonth and
+               #self.aday == other.aday and
+               #self.byear == other.byear and
+               #self.ayear == other.ayear and
+               #self.address2 == other.address2 and
+               self.phone2 == other.phone2 and
+               #self.notes == other.notes
+               )
 
     def id_or_max(self):
         if self.id:
