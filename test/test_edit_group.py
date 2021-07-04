@@ -11,8 +11,7 @@ def test_edit_group(app):
     index = randrange(len(old_groups))
     app.group.edit_group_by_index(Group(group_name="new_group", group_header="new_group_header", group_footer="new_group_footer"), index)
     sleep(1)
-    new_groups_count = app.group.count()
+    assert old_groups_count == app.group.count()
     new_groups = app.group.get_group_list()
-    assert old_groups_count == new_groups_count
     assert sorted(old_groups, key=Group.id_or_max) is not sorted(new_groups, key=Group.id_or_max)
 
