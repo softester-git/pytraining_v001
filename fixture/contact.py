@@ -11,6 +11,8 @@ class ContactHelper:
     def __repr__(self):
         return("%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s" % (self.app.id, self.app.fname, self.app.mname, self.app.lname, self.app.nname, self.app.photo, self.app.title, self.app.company, self.app.addr, self.app.home, self.app.work, self.app.mobile, self.app.email, self.app.email2, self.app.email3, self.app.homepage, self.app.bmonth, self.app.bday, self.app.amonth, self.app.aday, self.app.byear, self.app.ayear, self.app.address2, self.app.phone2, self.app.notes))
 
+    contact_cache = None
+
     def submit_form(self):
         wd = self.app.wd
         wd.find_element_by_xpath("//input[@name='submit']").click()
@@ -131,8 +133,6 @@ class ContactHelper:
         self.return_to_home()
         return len(wd.find_elements_by_name("selected[]"))
 
-    contact_cache = None
-
     def get_contact_list(self):
         if self.contact_cache is None:
             wd = self.app.wd
@@ -146,18 +146,11 @@ class ContactHelper:
                 first_name = cells[2].text
                 address = cells[3].text
                 all_emails = cells[4].text.splitlines()
-                all_phones = cells[5].text.splitlines()
+                all_phones = cells[5].text
                 self.contact_cache.append(Contact(fname=first_name,
                                                   lname=last_name,
                                                   id=contact_id,
-                                                  addr=address,
-                                                  email=all_emails[0] if len(all_emails) > 0 else None,
-                                                  email2=all_emails[1] if len(all_emails) > 1 else None,
-                                                  email3=all_emails[2] if len(all_emails) > 2 else None,
-                                                  home=all_phones[0] if len(all_phones) > 0 else None,
-                                                  mobile=all_phones[1] if len(all_phones) > 1 else None,
-                                                  work=all_phones[2] if len(all_phones) > 2 else None,
-                                                  phone2=all_phones[3] if len(all_phones) > 3 else None))
+                                                  all_phones_from_home_page=all_phones))
 
         return self.contact_cache
 
