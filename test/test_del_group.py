@@ -11,6 +11,4 @@ def test_delete_some_group(app):
     app.group.delete_group_by_index(index)
     sleep(1)
     assert old_groups_count - 1 == app.group.count()
-    new_groups = app.group.get_group_list()
-    assert sorted(old_groups, key=Group.id_or_max) != sorted(new_groups, key=Group.id_or_max)
 

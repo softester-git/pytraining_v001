@@ -12,6 +12,4 @@ def test_edit_group(app):
     app.group.edit_group_by_index(Group(group_name="new_group", group_header="new_group_header", group_footer="new_group_footer"), index)
     sleep(1)
     assert old_groups_count == app.group.count()
-    new_groups = app.group.get_group_list()
-    assert sorted(old_groups, key=Group.id_or_max) != sorted(new_groups, key=Group.id_or_max)
 

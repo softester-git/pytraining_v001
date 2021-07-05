@@ -12,5 +12,3 @@ def test_edit_contact(app):
     app.contact.edit_contact_by_index(Contact(fname="NewFirstName", lname="NewLastName", email3="newemail3@test.test", byear="2000"), index)
     sleep(1)
     assert old_contacts_count == app.contact.count()
-    new_contacts = app.contact.get_contact_list()
-    assert sorted(old_contacts, key=Contact.id_or_max) != sorted(new_contacts, key=Contact.id_or_max)
