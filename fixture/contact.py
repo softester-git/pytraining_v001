@@ -77,6 +77,7 @@ class ContactHelper:
         wd = self.app.wd
         self.return_to_home()
         # open edit form
+        index += 2
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr["+str(index)+"]/td[8]/a/img").click()
         self.fill_contact_form(contact)
         self.update_form()
