@@ -142,20 +142,24 @@ class ContactHelper:
             self.contact_cache = []
             for row in wd.find_elements_by_name("entry"):
                 cells = row.find_elements_by_tag_name("td")
-                contact_id = cells[0].find_element_by_tag_name("input").get_attribute("value")
-                last_name = cells[1].text
-                first_name = cells[2].text
-                address = cells[3].text
-                all_emails = cells[4].text
-                all_phones = cells[5].text
+                contact_id_value = cells[0].find_element_by_tag_name("input").get_attribute("value")
+                contact_id = contact_id_value if contact_id_value != "" else None
+                last_name_value = cells[1].text
+                last_name = last_name_value if last_name_value != "" else None
+                first_name_value = cells[2].text
+                first_name = first_name_value if first_name_value != "" else None
+                address_value = cells[3].text
+                address = address_value if address_value != "" else None
+                all_emails_value = cells[4].text
+                all_emails = all_emails_value if all_emails_value != "" else None
+                all_phones_value = cells[5].text
+                all_phones = all_phones_value if all_phones_value != "" else "None\nNone\nNone\nNone"
                 self.contact_cache.append(Contact(fname=first_name,
                                                   lname=last_name,
                                                   addr=address,
-                                                  id=contact_id
-                                                  #all_phones=all_phones,
-                                                  #all_emails=all_emails
-                ))
-
+                                                  id=contact_id,
+                                                  all_phones=all_phones,
+                                                  all_emails=all_emails))
         return self.contact_cache
 
     def select_contact_by_index(self, index):
@@ -169,8 +173,16 @@ class ContactHelper:
         firstname = firstname_value if firstname_value != "" else None
         lastname_value = wd.find_element_by_name("lastname").get_attribute("value")
         lastname = lastname_value if lastname_value != "" else None
+        address_value = wd.find_element_by_name("address").get_attribute("value")
+        address = address_value if address_value != "" else None
         id_value = wd.find_element_by_name("id").get_attribute("value")
         id = id_value if id_value != "" else None
+        email_value = wd.find_element_by_name("email").get_attribute("value")
+        email = email_value if email_value != "" else None
+        email2_value = wd.find_element_by_name("email2").get_attribute("value")
+        email2 = email2_value if email2_value != "" else None
+        email3_value = wd.find_element_by_name("email3").get_attribute("value")
+        email3 = email3_value if email3_value != "" else None
         homephone_value = wd.find_element_by_name("home").get_attribute("value")
         homephone = homephone_value if homephone_value != "" else None
         workphone_value = wd.find_element_by_name("work").get_attribute("value")
@@ -179,26 +191,45 @@ class ContactHelper:
         mobilephone = mobilephone_value if mobilephone_value != "" else None
         secondaryphone_value = wd.find_element_by_name("phone2").get_attribute("value")
         secondaryphone = secondaryphone_value if secondaryphone_value != "" else None
-        return(Contact(fname=firstname, lname=lastname, id=id,
-                       home=homephone, work=workphone, mobile=mobilephone, phone2=secondaryphone))
+        return(Contact(fname=firstname, lname=lastname, id=id, addr=address,
+                       home=homephone, work=workphone, mobile=mobilephone, phone2=secondaryphone,
+                       email=email, email2=email2, email3=email3))
+        return(Contact(fname=firstname_value, lname=lastname_value, id=id_value, addr=address_value))
+    #        return(Contact(fname=firstname_value, lname=lastname_value, id=id_value, addr=address_value,
+    #                       home=homephone_value, work=workphone_value, mobile=mobilephone_value, phone2=secondaryphone_value,
+    #                       email=email_value, email2=email2_value, email3=email3_value))
 
     def get_contact_from_edit_page(self, index):
         wd = self.app.wd
         self.open_edit_contact_by_index(index)
         firstname_value = wd.find_element_by_name("firstname").get_attribute("value")
+        firstname = firstname_value if firstname_value != "" else None
         lastname_value = wd.find_element_by_name("lastname").get_attribute("value")
-        address_value = wd.find_element_by_name("lastname").get_attribute("value")
+        lastname = lastname_value if lastname_value != "" else None
+        address_value = wd.find_element_by_name("address").get_attribute("value")
+        address = address_value if address_value != "" else None
         id_value = wd.find_element_by_name("id").get_attribute("value")
+        id = id_value if id_value != "" else None
         email_value = wd.find_element_by_name("email").get_attribute("value")
+        email = email_value if email_value != "" else None
         email2_value = wd.find_element_by_name("email2").get_attribute("value")
+        email2 = email2_value if email2_value != "" else None
         email3_value = wd.find_element_by_name("email3").get_attribute("value")
+        email3 = email3_value if email3_value != "" else None
         homephone_value = wd.find_element_by_name("home").get_attribute("value")
+        homephone = homephone_value if homephone_value != "" else None
         workphone_value = wd.find_element_by_name("work").get_attribute("value")
+        workphone = workphone_value if workphone_value != "" else None
         mobilephone_value = wd.find_element_by_name("mobile").get_attribute("value")
+        mobilephone = mobilephone_value if mobilephone_value != "" else None
         secondaryphone_value = wd.find_element_by_name("phone2").get_attribute("value")
-        return(Contact(fname=firstname_value, lname=lastname_value, id=id_value, addr=address_value,
-                       home=homephone_value, work=workphone_value, mobile=mobilephone_value, phone2=secondaryphone_value,
-                       email=email_value, email2=email2_value, email3=email3_value))
+        secondaryphone = secondaryphone_value if secondaryphone_value != "" else None
+#        return(Contact(fname=firstname_value, lname=lastname_value, id=id_value, addr=address_value,
+#                       home=homephone_value, work=workphone_value, mobile=mobilephone_value, phone2=secondaryphone_value,
+#                       email=email_value, email2=email2_value, email3=email3_value))
+        return(Contact(fname=firstname, lname=lastname, id=id, addr=address,
+                       home=homephone, work=workphone, mobile=mobilephone, phone2=secondaryphone,
+                       email=email, email2=email2, email3=email3))
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd

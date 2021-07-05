@@ -37,21 +37,21 @@ class Contact:
     def __eq__(self, other):
         return(self.id == other.id and
                self.fname == other.fname and
-               self.mname == other.mname and
                self.lname == other.lname and
-               self.nname == other.nname and
+               self.addr == other.addr)
+               #self.mname == other.mname and
+               #self.nname == other.nname and
                #self.photo == other.photo and
                #self.title == other.title and
-               self.company == other.company and
-               self.addr == other.addr and
-               self.home == other.home and
-               self.mobile == other.mobile and
-               self.work == other.work and
+               #self.company == other.company and
+               #self.home == other.home and
+               #self.mobile == other.mobile and
+               #self.work == other.work and
                #self.fax == other.fax and
-               self.email == other.email and
-               self.email2 == other.email2 and
-               self.email3 == other.email3 and
-               self.homepage == other.homepage and
+               #self.email == other.email and
+               #self.email2 == other.email2 and
+               #self.email3 == other.email3 and
+               #self.homepage == other.homepage and
                #self.bmonth == other.bmonth and
                #self.bday == other.bday and
                #self.amonth == other.amonth and
@@ -59,9 +59,8 @@ class Contact:
                #self.byear == other.byear and
                #self.ayear == other.ayear and
                #self.address2 == other.address2 and
-               self.phone2 == other.phone2
+               #self.phone2 == other.phone2 and
                #self.notes == other.notes
-               )
 
     def id_or_max(self):
         if self.id:
