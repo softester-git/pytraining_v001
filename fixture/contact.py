@@ -150,9 +150,10 @@ class ContactHelper:
                 self.contact_cache.append(Contact(fname=first_name,
                                                   lname=last_name,
                                                   addr=address,
-                                                  id=contact_id,
-                                                  all_phones=all_phones,
-                                                  all_emails=all_emails))
+                                                  id=contact_id
+                                                  #all_phones=all_phones,
+                                                  #all_emails=all_emails
+                ))
 
         return self.contact_cache
 
