@@ -98,8 +98,7 @@ class GroupHelper:
             self.open_groups_page()
             self.group_cache = []
             for element in wd.find_elements_by_css_selector("span.group"):
-                text = element.text
-                id_value = element.find_element_by_name("selected[]").get_attribute("value")
-                id = id_value if id_value != "" else None
-                self.group_cache.append(Group(group_name=text, group_id=id))
+                text = list(element.text.split("\n"))[0]
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                self.group_cache.append(Group(group_name=text if text!="" else None, group_id=id if id!="" else None))
         return list(self.group_cache)

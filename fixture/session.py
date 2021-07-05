@@ -1,6 +1,5 @@
 from time import sleep
 
-
 class SessionHelper:
 
     def __init__(self, app):

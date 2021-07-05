@@ -4,6 +4,8 @@ from fixture.group import GroupHelper
 from fixture.contact import ContactHelper
 from selenium.webdriver.support.select import Select
 import os
+import string
+import random
 
 class Application:
 
@@ -53,5 +55,5 @@ class Application:
             return False
 
     def random_string(prefix, maxlen):
-        symbols = string.ascii_letters + string.digits + string.punctuation + " " * 10
+        symbols = string.ascii_letters + string.digits
         return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])

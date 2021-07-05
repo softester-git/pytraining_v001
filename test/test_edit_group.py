@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from model.group import Group
-from time import sleep
 from random import randrange
 
 def test_edit_group(app):
@@ -9,6 +8,5 @@ def test_edit_group(app):
     old_groups_count = app.group.count()
     index = randrange(old_groups_count)
     app.group.edit_group_by_index(Group(group_name="new_group", group_header="new_group_header", group_footer="new_group_footer"), index)
-    sleep(1)
     assert old_groups_count == app.group.count()
 

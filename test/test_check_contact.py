@@ -5,10 +5,7 @@ def test_contact_home_page_eq_edit_page(app):
     index = randrange(app.contact.count())
     contact_from_home_page = app.contact.get_contact_list()[index]
     contact_from_edit_page = app.contact.get_contact_from_edit_page(index)
-    assert contact_from_home_page.id == contact_from_edit_page.id
-    assert contact_from_home_page.fname == contact_from_edit_page.fname
-    assert contact_from_home_page.lname == contact_from_edit_page.lname
-    assert contact_from_home_page.addr == contact_from_edit_page.addr
+    assert contact_from_home_page == contact_from_edit_page
 
 def clear(s):
     return re.sub("[() -]", "", s)
