@@ -17,13 +17,14 @@ def app(request):
             target = json.load(f)
     if fixture is None or not fixture.is_valid():
         fixture = Application(browser=browser, baseurl=target["base_url"])
-    fixture.session.login(user_name=target["user_name"], user_pass=target["password"])
+        fixture.session.login(user_name=target["user_name"], user_pass=target["password"])
     return fixture
 
 
 @pytest.fixture(scope="session", autouse=True)
 def stop(request):
     def fin():
+        print("*")
         fixture.session.ensure_logout()
         fixture.destroy()
     request.addfinalizer(fin)
