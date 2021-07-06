@@ -1,1 +1,44 @@
-[{"group_name": "", "group_header": "", "group_footer": "", "group_id": null}, {"group_name": "namejiLihNa", "group_header": "headerbSC", "group_footer": "footer3c0iD", "group_id": null}, {"group_name": "namej", "group_header": "headerDk8tzfRFZf1QMHY", "group_footer": "footerq44zVDeXoNA", "group_id": null}, {"group_name": "nameQSX", "group_header": "header7yUs0ZLC77wwUN6", "group_footer": "footerWfR1bke5rd", "group_id": null}, {"group_name": "nameCzxp", "group_header": "headerLg", "group_footer": "footeriCgyUA", "group_id": null}, {"group_name": "namedf17", "group_header": "headerHJhKKsJnSFyd2NHpE", "group_footer": "footer605rutF2jpsjsHsSj", "group_id": null}]
+[
+  {
+    "py/object": "model.group.Group",
+    "group_name": null,
+    "group_header": null,
+    "group_footer": null,
+    "group_id": null
+  },
+  {
+    "py/object": "model.group.Group",
+    "group_name": "nameVvWuGdF",
+    "group_header": "headerIPFWc7",
+    "group_footer": "footerix2XbT4DIn",
+    "group_id": null
+  },
+  {
+    "py/object": "model.group.Group",
+    "group_name": "name1Xna",
+    "group_header": "header8DPXincc633",
+    "group_footer": "footerOpY",
+    "group_id": null
+  },
+  {
+    "py/object": "model.group.Group",
+    "group_name": "name87LdtJGW",
+    "group_header": "headerr0twnFsoQrfz2yyaRJ",
+    "group_footer": "footerbEEB25ZKZL4",
+    "group_id": null
+  },
+  {
+    "py/object": "model.group.Group",
+    "group_name": "namexzKfh",
+    "group_header": "headercP0Ase",
+    "group_footer": "footer8B7Ds",
+    "group_id": null
+  },
+  {
+    "py/object": "model.group.Group",
+    "group_name": "nameQooGeONe",
+    "group_header": "headerZuVTwChTe",
+    "group_footer": "footer",
+    "group_id": null
+  }
+]

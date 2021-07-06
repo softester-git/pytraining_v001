@@ -2,6 +2,7 @@ import pytest
 import json
 import os.path
 import importlib
+import jsonpickle
 from fixture.application import Application
 
 fixture = None
@@ -25,7 +26,6 @@ def app(request):
 @pytest.fixture(scope="session", autouse=True)
 def stop(request):
     def fin():
-        print("*")
         fixture.session.ensure_logout()
         fixture.destroy()
     request.addfinalizer(fin)
@@ -42,7 +42,14 @@ def pytest_generate_tests(metafunc):
         if fixture.startswith("data_"):
             test_data = load_from_module(fixture[5:])
             metafunc.parametrize(fixture, test_data, ids=[str(x) for x in test_data])
+        elif fixture.startswith("json_"):
+            test_data = load_from_json(fixture[5:])
+            metafunc.parametrize(fixture, test_data, ids=[str(x) for x in test_data])
 
 
 def load_from_module(module):
     return importlib.import_module("data.%s" % module).test_data
+
+def load_from_json(file):
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data/%s.json" % file)) as f:
+        return jsonpickle.decode(f.read())
