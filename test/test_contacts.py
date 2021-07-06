@@ -1,23 +1,9 @@
 # -*- coding: utf-8 -*-
 from model.contact import Contact
-import pytest
-import random
-import string
 
 
-def random_string(prefix, maxlen):
-    symbols = string.ascii_letters + string.digits
-    return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
-
-test_data = [
-    Contact(fname=fname if fname!="" else None, lname=lname if lname!="" else None, addr=addr if addr!="" else None)
-    for fname in [None, random_string("first_name", 10)]
-    for lname in [None, random_string("last_name", 10)]
-    for addr in [None, random_string("address", 10)]
-]
-
-@pytest.mark.parametrize("contact", test_data, ids=[repr(x) for x in test_data])
-def test_create_contact(app, contact):
+def test_create_contact(app, json_contacts):
+    contact = json_contacts
     old_contacts = app.contact.get_contact_list()
     old_contacts_count = app.contact.count()
     app.contact.create(contact)
