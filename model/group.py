@@ -12,8 +12,6 @@ class Group:
         return("%s:%s:%s:%s" % (self.group_name, self.group_header, self.group_footer, self.group_id))
 
     def __eq__(self, other):
-        #return(str(self.group_id) == str(other.group_id) and self.group_name == other.group_name)
-        #return (self.group_name == other.group_name)
         return((self.group_id is None or other.group_id is None or self.group_id == other.group_id) and self.group_name == other.group_name)
 
     def id_or_max(self):
