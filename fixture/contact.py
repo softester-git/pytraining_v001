@@ -34,7 +34,7 @@ class ContactHelper:
     def create(self, contact):
         sleep(5)
         self.open_contact_page()
-        sleep(5)
+        #sleep(5)
         self.fill_contact_form(contact)
         self.submit_form()
         self.return_to_home()
