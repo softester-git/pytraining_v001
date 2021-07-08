@@ -77,8 +77,7 @@ class ContactHelper:
         wd = self.app.wd
         self.return_to_home()
         # open edit form
-        index += 2
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr["+str(index)+"]/td[8]/a/img").click()
+        wd.find_element_by_xpath("//a[@href='edit.php?id="+str(index)+"']").click()
         self.fill_contact_form(contact)
         self.update_form()
         self.return_to_home()
@@ -157,7 +156,7 @@ class ContactHelper:
 
     def select_contact_by_index(self, index):
         wd = self.app.wd
-        wd.find_elements_by_name("selected[]")[index].click()
+        wd.find_element_by_xpath("//input[@value='" + str(index) + "']").click()
 
     def get_contact_info_from_edit_page(self, index):
         wd = self.app.wd
