@@ -1,4 +1,4 @@
-import time
+from time import sleep
 import re
 
 from model.contact import Contact
@@ -32,7 +32,9 @@ class ContactHelper:
             wd.find_element_by_link_text("home").click()
 
     def create(self, contact):
+        sleep(5)
         self.open_contact_page()
+        sleep(5)
         self.fill_contact_form(contact)
         self.submit_form()
         self.return_to_home()
@@ -47,7 +49,7 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # confirm deletion
         wd.switch_to_alert().accept()
-        # return to groups page
+        # return to home page
         self.return_to_home()
         self.contact_cache = None
 
@@ -59,7 +61,7 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # confirm deletion
         wd.switch_to_alert().accept()
-        # return to groups page
+        # return to home page
         self.return_to_home()
         self.contact_cache = None
 
