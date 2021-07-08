@@ -1,0 +1,135 @@
+C:\Users\alexander.trukhachev\PycharmProjects\pytraining_v001\env\Scripts\python.exe "C:\Program Files\JetBrains\PyCharm Community Edition 2021.1.2\plugins\python-ce\helpers\pycharm\_jb_pytest_runner.py" --path C:/Users/alexander.trukhachev/PycharmProjects/pytraining_v001/test/test_db_matches_ui.py
+Testing started at 13:04 ...
+Launching pytest with arguments C:/Users/alexander.trukhachev/PycharmProjects/pytraining_v001/test/test_db_matches_ui.py --no-header --no-summary -q in C:\Users\alexander.trukhachev\PycharmProjects\pytraining_v001\test
+
+============================= test session starts =============================
+collecting ... collected 1 item
+
+test_db_matches_ui.py::test_group_list ERROR                             [100%]
+test setup failed
+self = <mysql.connector.network.MySQLTCPSocket object at 0x000001E0354E7400>
+
+    def open_connection(self):
+        """Open the TCP/IP connection to the MySQL server
+        """
+        # Get address information
+        addrinfo = [None] * 5
+        try:
+            addrinfos = socket.getaddrinfo(self.server_host,
+                                           self.server_port,
+                                           0, socket.SOCK_STREAM,
+                                           socket.SOL_TCP)
+            # If multiple results we favor IPv4, unless IPv6 was forced.
+            for info in addrinfos:
+                if self.force_ipv6 and info[0] == socket.AF_INET6:
+                    addrinfo = info
+                    break
+                elif info[0] == socket.AF_INET:
+                    addrinfo = info
+                    break
+            if self.force_ipv6 and addrinfo[0] is None:
+                raise errors.InterfaceError(
+                    "No IPv6 address found for {0}".format(self.server_host))
+            if addrinfo[0] is None:
+                addrinfo = addrinfos[0]
+        except IOError as err:
+            raise errors.InterfaceError(
+                errno=2003, values=(self.get_address(), _strioerror(err)))
+        else:
+            (self._family, socktype, proto, _, sockaddr) = addrinfo
+    
+        # Instanciate the socket and connect
+        try:
+            self.sock = socket.socket(self._family, socktype, proto)
+            self.sock.settimeout(self._connection_timeout)
+>           self.sock.connect(sockaddr)
+E           ConnectionRefusedError: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение
+
+..\env\lib\site-packages\mysql\connector\network.py:509: ConnectionRefusedError
+
+During handling of the above exception, another exception occurred:
+
+request = <SubRequest 'db' for <Function test_group_list>>
+
+    @pytest.fixture(scope="session")
+    def db(request):
+        db_config = load_config(request.config.getoption("--target"))["db"]
+>       dbfixture = DbFixture(host=db_config["host"], name=db_config["name"], user=db_config["user"], password=db_config["password"])
+
+..\conftest.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\fixture\db.py:14: in __init__
+    self.connection = mysql.connector.connect(host=host, database=name, user=user, password=password)
+..\env\lib\site-packages\mysql\connector\__init__.py:179: in connect
+    return MySQLConnection(*args, **kwargs)
+..\env\lib\site-packages\mysql\connector\connection.py:95: in __init__
+    self.connect(**kwargs)
+..\env\lib\site-packages\mysql\connector\abstracts.py:716: in connect
+    self._open_connection()
+..\env\lib\site-packages\mysql\connector\connection.py:206: in _open_connection
+    self._socket.open_connection()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <mysql.connector.network.MySQLTCPSocket object at 0x000001E0354E7400>
+
+    def open_connection(self):
+        """Open the TCP/IP connection to the MySQL server
+        """
+        # Get address information
+        addrinfo = [None] * 5
+        try:
+            addrinfos = socket.getaddrinfo(self.server_host,
+                                           self.server_port,
+                                           0, socket.SOCK_STREAM,
+                                           socket.SOL_TCP)
+            # If multiple results we favor IPv4, unless IPv6 was forced.
+            for info in addrinfos:
+                if self.force_ipv6 and info[0] == socket.AF_INET6:
+                    addrinfo = info
+                    break
+                elif info[0] == socket.AF_INET:
+                    addrinfo = info
+                    break
+            if self.force_ipv6 and addrinfo[0] is None:
+                raise errors.InterfaceError(
+                    "No IPv6 address found for {0}".format(self.server_host))
+            if addrinfo[0] is None:
+                addrinfo = addrinfos[0]
+        except IOError as err:
+            raise errors.InterfaceError(
+                errno=2003, values=(self.get_address(), _strioerror(err)))
+        else:
+            (self._family, socktype, proto, _, sockaddr) = addrinfo
+    
+        # Instanciate the socket and connect
+        try:
+            self.sock = socket.socket(self._family, socktype, proto)
+            self.sock.settimeout(self._connection_timeout)
+            self.sock.connect(sockaddr)
+        except IOError as err:
+>           raise errors.InterfaceError(
+                errno=2003, values=(self.get_address(), _strioerror(err)))
+E           mysql.connector.errors.InterfaceError: 2003: Can't connect to MySQL server on 'localhost:3306' (10061 Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение)
+
+..\env\lib\site-packages\mysql\connector\network.py:511: InterfaceError
+
+test_db_matches_ui.py::test_group_list ERROR                             [100%]
+test_db_matches_ui.py:3 (test_group_list)
+def fin():
+>       fixture.session.ensure_logout()
+E       AttributeError: 'NoneType' object has no attribute 'session'
+
+..\conftest.py:46: AttributeError
+
+
+============================== 2 errors in 2.39s ==============================
+
+Process finished with exit code 1
+
+
+
+
+
+
+
+
