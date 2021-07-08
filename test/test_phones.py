@@ -24,9 +24,3 @@ def test_phones_on_contact_view_page(app, db):
 
 def clear(s):
     return re.sub("[() -]]", "", s)
-
-def merge_phones_like_on_home_page(contact):
-    return "\n".join(filter(lambda y: y != "",
-                            map(lambda x: clear(x),
-                                filter(lambda x: x is not None,
-                                       [str(contact.home), str(contact.work), str(contact.mobile), str(contact.phone2)]))))
