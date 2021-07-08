@@ -17,7 +17,7 @@ class DbFixture():
         cursor = self.connection.cursor()
         try:
             list = []
-            cursor.execute("select group_id, group_name, group_header, group_footer from group_list")
+            cursor.execute("select group_id, group_name, group_header, group_footer from group_list where deprecated='0000-00-00 00:00:00'")
             for row in cursor:
                 id = row[0] if row[0] != "" else None
                 name = row[1] if row[1] != "" else None
@@ -32,7 +32,7 @@ class DbFixture():
         cursor = self.connection.cursor()
         try:
             list = []
-            cursor.execute("select id, firstname, lastname, address from addressbook")
+            cursor.execute("select id, firstname, lastname, address from addressbook where deprecated='0000-00-00 00:00:00'")
             for row in cursor:
                 id = row[0] if row[0] != "" else None
                 firstname = row[1] if row[1] != "" else None
