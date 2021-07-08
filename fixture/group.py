@@ -56,7 +56,7 @@ class GroupHelper:
 
     def select_group_by_index(self, index):
         wd = self.app.wd
-        wd.find_element_by_xpath("//input[@value='"+index+"']").click()
+        wd.find_element_by_xpath("//input[@value='"+str(index)+"']").click()
 
     def edit_first_group(self, group):
         wd = self.app.wd
