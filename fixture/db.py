@@ -32,13 +32,18 @@ class DbFixture():
         cursor = self.connection.cursor()
         try:
             list = []
-            cursor.execute("select id, firstname, lastname, address from addressbook where deprecated='0000-00-00 00:00:00'")
+            cursor.execute("select id, firstname, lastname, address, home, work, mobile, phone2 from addressbook where deprecated='0000-00-00 00:00:00'")
             for row in cursor:
                 id = row[0] if row[0] != "" else None
                 firstname = row[1] if row[1] != "" else None
                 lastname = row[2] if row[2] != "" else None
                 address = row[3] if row[3] != "" else None
-                list.append(Contact(id=str(id), fname=firstname, lname=lastname, addr=address))
+                home = row[4] if row[4] != "" else None
+                work = row[5] if row[5] != "" else None
+                mobile = row[6] if row[6] != "" else None
+                phone2 = row[7] if row[7] != "" else None
+                all_phones = str(home) + "\n" + str(work) + "\n" + str(mobile) + "\n" + str(phone2)
+                list.append(Contact(id=str(id), fname=firstname, lname=lastname, addr=address, all_phones=all_phones))
         finally:
             cursor.close()
         return list

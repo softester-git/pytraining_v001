@@ -87,21 +87,15 @@ class ContactHelper:
 
     def open_edit_contact_by_index(self, index):
         wd = self.app.wd
-        index += 2
         self.return_to_home()
-        # open edit form
-        time.sleep(1)
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(index) + "]/td[8]/a/img")
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(index) + "]/td[8]/a/img").click()
+        sleep(1)
+        wd.find_element_by_xpath("//a[@href='edit.php?id=" + str(index) + "']").click()
 
     def open_view_contact_by_index(self, index):
         wd = self.app.wd
-        index += 2
         self.return_to_home()
-        # open edit form
-        time.sleep(1)
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(index) + "]/td[7]/a/img")
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(index) + "]/td[7]/a/img").click()
+        sleep(1)
+        wd.find_element_by_xpath("//a[@href='view.php?id=" + str(index) + "']").click()
 
     def fill_contact_form(self, contact):
         self.app.change_field_value("firstname", contact.fname)
@@ -153,28 +147,13 @@ class ContactHelper:
                                                   lname=last_name_value if last_name_value!="" else None,
                                                   addr=address_value if address_value!="" else None,
                                                   id=contact_id_value if contact_id_value!="" else None,
-                                                  all_phones=all_phones_value if all_phones_value!="" else "None\nNone\nNone\nNone"))
+                                                  all_phones=all_phones_value if all_phones_value!="" else None#"None\nNone\nNone\nNone"
+                                                  ))
         return self.contact_cache
 
     def select_contact_by_index(self, index):
         wd = self.app.wd
         wd.find_element_by_xpath("//input[@value='" + str(index) + "']").click()
-
-    def get_contact_info_from_edit_page(self, index):
-        wd = self.app.wd
-        self.open_edit_contact_by_index(index)
-        firstname_value = wd.find_element_by_name("firstname").get_attribute("value")
-        lastname_value = wd.find_element_by_name("lastname").get_attribute("value")
-        address_value = wd.find_element_by_name("address").get_attribute("value")
-        id_value = wd.find_element_by_name("id").get_attribute("value")
-        email_value = wd.find_element_by_name("email").get_attribute("value")
-        email2_value = wd.find_element_by_name("email2").get_attribute("value")
-        email3_value = wd.find_element_by_name("email3").get_attribute("value")
-        homephone_value = wd.find_element_by_name("home").get_attribute("value")
-        workphone_value = wd.find_element_by_name("work").get_attribute("value")
-        mobilephone_value = wd.find_element_by_name("mobile").get_attribute("value")
-        secondaryphone_value = wd.find_element_by_name("phone2").get_attribute("value")
-        return(Contact(fname=firstname_value if firstname_value!="" else None, lname=lastname_value if lastname_value!="" else None, id=id_value if id_value!="" else None, addr=address_value if address_value!="" else None))
 
     def get_contact_from_edit_page(self, index):
         wd = self.app.wd
@@ -190,7 +169,15 @@ class ContactHelper:
         workphone_value = wd.find_element_by_name("work").get_attribute("value")
         mobilephone_value = wd.find_element_by_name("mobile").get_attribute("value")
         secondaryphone_value = wd.find_element_by_name("phone2").get_attribute("value")
-        return(Contact(fname=firstname_value if firstname_value!="" else None, lname=lastname_value if lastname_value!="" else None, id=id_value if id_value!="" else None, addr=address_value if address_value!="" else None))
+        return(Contact(fname=firstname_value if firstname_value != "" else None,
+                       lname=lastname_value if lastname_value != "" else None,
+                       id=id_value if id_value != "" else None,
+                       addr=address_value if address_value != "" else None,
+                       home=homephone_value if homephone_value != "" else None,
+                       work=workphone_value if workphone_value != "" else None,
+                       mobile=mobilephone_value if mobilephone_value != "" else None,
+                       phone2=secondaryphone_value if secondaryphone_value != "" else None
+                       ))
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
