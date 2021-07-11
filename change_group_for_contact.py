@@ -1,18 +1,21 @@
 from fixture.db import DbFixture
 from model.group import Group
+from model.contact import Contact
+import random
 
 
 db = DbFixture(host="127.0.0.1", name="addressbook", user="root", password="")
 
 
-group_id = "594"
-contact_id = "538"
+def test_change(db):
+    contacts = db.get_contact_list()
+    groups = db.get_group_list()
+    random_contact = random.choice(contacts)
+    random_group = random.choice(groups)
+    if db.check_relation(group=random_group, contact=random_contact):
+        db.del_relation(random_group, random_contact)
+    else:
+        db.add_relation(random_group, random_contact)
 
 
-cursor = db.connection.cursor()
-check = cursor.execute("select id from address_in_groups where id="+contact_id+" and group_id="+group_id)
-row = cursor.fetchall()
-if len(row) == 0:
-    cursor.execute("insert into address_in_groups (id, group_id, created) values ("+contact_id+", "+group_id+", now())")
-else:
-    cursor.execute("delete from address_in_groups where id="+contact_id+" and group_id="+group_id)
+db.connection.close()
