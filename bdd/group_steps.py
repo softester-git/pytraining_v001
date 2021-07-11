@@ -34,7 +34,7 @@ def random_group(non_empty_group_list):
 
 @when("I delete the group from the list")
 def delete_group(app, random_group):
-    app.group.delete_group_by_index(random_group.group_id)
+    app.group.delete_group_by_id(str(random_group.group_id))
 
 @then("the new group list equal to the old list without the deleted group")
 def verify_group_deleted(app, db, non_empty_group_list, random_group, check_ui):
