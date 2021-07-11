@@ -5,10 +5,12 @@ import random
 
 
 def test_edit_group(app, db, check_ui):
-    if app.group.count() == 0:
-        app.group.create(Group(group_name="Test"))
     old_groups = db.get_group_list()
-    old_groups_count = app.group.count()
+    if len(old_groups) == 0:
+        app.group.create(Group(group_name="Test"))
+        old_groups_count = 1
+    else
+        old_groups_count = len(old_groups)
     id = random.choice(list(map(lambda x: x.group_id, old_groups)))
     app.group.edit_group_by_id(Group(group_name="new_group_name", group_header="new_group_header", group_footer="new_group_footer"), id)
     sleep(1)

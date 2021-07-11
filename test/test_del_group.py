@@ -4,10 +4,12 @@ import random
 
 
 def test_delete_some_group(app, db, check_ui):
-    if app.group.count() == 0:
-        app.group.create(Group(group_name="Test"))
     old_groups = db.get_group_list()
-    old_groups_count = app.group.count()
+    if len(old_groups) == 0:
+        app.group.create(Group(group_name="Test"))
+        old_groups_count = 1
+    else
+        old_groups_count = len(old_groups)
     id = random.choice(list(map(lambda x: x.group_id, old_groups)))
     app.group.delete_group_by_id(id)
     sleep(1)
