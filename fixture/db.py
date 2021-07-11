@@ -46,7 +46,11 @@ class DbFixture():
                 email2 = row[9] if row[9] != "" else None
                 email3 = row[10] if row[10] != "" else None
                 all_phones = str(home)+"\n"+str(work)+"\n"+str(mobile)+"\n"+str(phone2)
+                all_phones = all_phones.replace("\nNone", "")
+                all_phones = all_phones.replace("None", "")
                 all_emails = str(email)+"\n"+str(email2)+"\n"+str(email3)
+                all_emails = all_emails.replace("\nNone", "")
+                all_emails = all_emails.replace("None", "")
                 list_out.append(Contact(id=str(id), fname=firstname if firstname != "" else None, lname=lastname if lastname != "" else None, addr=address if address != "" else None, all_phones=all_phones, all_emails=all_emails))
         finally:
             cursor.close()
