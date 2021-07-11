@@ -143,11 +143,11 @@ class ContactHelper:
                 address_value = cells[3].text
                 all_emails_value = cells[4].text
                 all_phones_value = cells[5].text
-                self.contact_cache.append(Contact(fname=first_name_value if first_name_value!="" else None,
-                                                  lname=last_name_value if last_name_value!="" else None,
-                                                  addr=address_value if address_value!="" else None,
-                                                  id=contact_id_value if contact_id_value!="" else None,
-                                                  all_phones=all_phones_value if all_phones_value!="" else None#"None\nNone\nNone\nNone"
+                self.contact_cache.append(Contact(fname=first_name_value if first_name_value != "" else None,
+                                                  lname=last_name_value if last_name_value != "" else None,
+                                                  addr=address_value if address_value != "" else None,
+                                                  id=contact_id_value if contact_id_value != "" else None,
+                                                  all_phones=all_phones_value if all_phones_value != "" else None
                                                   ))
         return self.contact_cache
 
