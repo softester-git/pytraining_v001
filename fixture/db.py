@@ -43,7 +43,7 @@ class DbFixture():
                 mobile = row[6] if row[6] != "" else None
                 phone2 = row[7] if row[7] != "" else None
                 all_phones = str(home) + "\n" + str(work) + "\n" + str(mobile) + "\n" + str(phone2)
-                list.append(Contact(id=str(id), fname=firstname, lname=lastname, addr=address, all_phones=all_phones))
+                list.append(Contact(id=str(id), fname=firstname if firstname != "" else None, lname=lastname if lastname != "" else None, addr=address if address != "" else None, all_phones=all_phones))
         finally:
             cursor.close()
         return list
