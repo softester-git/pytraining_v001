@@ -8,7 +8,7 @@ def test_delete_some_contact(app, db, check_ui):
     if len(old_contacts) == 0:
         app.contact.create(Contact(fname="FirstName", lname="LastName", addr="Address", email="test@test.test"))
         old_contacts_count = 1
-    else
+    else:
         old_contacts_count = len(old_contacts)
     index = random.choice(list(map(lambda x: x.id, old_contacts)))
     app.contact.delete_contact_by_id(index)
