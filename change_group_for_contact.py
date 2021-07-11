@@ -13,7 +13,8 @@ def test_change(db, app):
     random_contact = random.choice(contacts)
     random_group = random.choice(groups)
     if db.check_relation(group=random_group, contact=random_contact):
-        app.contact.del_relation(group=random_group, contact=random_contact)
+        db.del_relation(group=random_group, contact=random_contact)
+        #app.contact.del_relation(group=random_group, contact=random_contact)
         check = db.check_relation(group=random_group, contact=random_contact)
         assert check is False
     else:
