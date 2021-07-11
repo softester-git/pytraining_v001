@@ -201,3 +201,15 @@ class ContactHelper:
         except:
             phone2 = None
         return(Contact(home=home, work=work, mobile=mobile, phone2=phone2))
+
+    def del_relation(self, group, contact):
+        # How to delete group from contact by ui?
+        pass
+
+    def add_relation(self, group, contact):
+        wd = self.app.wd
+        self.return_to_home()
+        self.select_contact_by_id(str(contact.id))
+        wd.find_element_by_name("to_group").send_keys(str(group.group_id))
+        wd.find_element_by_name("add").click()
+        self.return_to_home()

@@ -55,14 +55,15 @@ class DbFixture():
     def check_relation(self, group, contact):
         cursor = self.connection.cursor()
         try:
+            print(group.group_id)
             cursor.execute("select id from address_in_groups where id=" + str(contact.id) + " and group_id=" + str(group.group_id))
             row = cursor.fetchall()
+            out = True if len(row) > 0 else False
         except:
             out = False
         finally:
             cursor.close()
-        out = True if len(row) > 0 else False
-        return (out)
+        return(out)
 
 
     def add_relation(self, group, contact):
