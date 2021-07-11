@@ -147,7 +147,8 @@ class ContactHelper:
                                                   lname=last_name_value if last_name_value != "" else None,
                                                   addr=address_value if address_value != "" else None,
                                                   id=contact_id_value if contact_id_value != "" else None,
-                                                  all_phones=all_phones_value if all_phones_value != "" else None
+                                                  all_phones=all_phones_value if all_phones_value != "" else None,
+                                                  all_emails=all_emails_value if all_emails_value != "" else None
                                                   ))
         return self.contact_cache
 
