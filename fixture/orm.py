@@ -35,7 +35,7 @@ class ORMFixture:
 
     def convert_contacts_to_model(self, contacts):
         def convert(contact):
-            return Contact(id=str(contact.id), fname=contact.first_name, lname=contact.last_name, groups=contact.groups)
+            return Contact(id=str(contact.id), fname=contact.first_name if contact.first_name != "" else None, lname=contact.last_name if contact.last_name != "" else None, all_emails=contact.all_emails if contact.all_emails != "" else None, all_phones=contact.all_phones if contact.all_phones != "" else None, groups=contact.groups)
         return list(map(convert, contacts))
 
 

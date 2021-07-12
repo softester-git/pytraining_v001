@@ -53,10 +53,10 @@ class ContactHelper:
         self.return_to_home()
         self.contact_cache = None
 
-    def delete_contact_by_index(self, index):
+    def delete_contact_by_id(self, id):
         wd = self.app.wd
         self.return_to_home()
-        self.select_contact_by_index(index)
+        self.select_contact_by_id(id)
         # submit deletion
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # confirm deletion
@@ -75,27 +75,27 @@ class ContactHelper:
         self.return_to_home()
         self.contact_cache = None
 
-    def edit_contact_by_index(self, contact, index):
+    def edit_contact_by_id(self, contact, id):
         wd = self.app.wd
         self.return_to_home()
         # open edit form
-        wd.find_element_by_xpath("//a[@href='edit.php?id="+str(index)+"']").click()
+        wd.find_element_by_xpath("//a[@href='edit.php?id="+str(id)+"']").click()
         self.fill_contact_form(contact)
         self.update_form()
         self.return_to_home()
         self.contact_cache = None
 
-    def open_edit_contact_by_index(self, index):
+    def open_edit_contact_by_id(self, id):
         wd = self.app.wd
         self.return_to_home()
         sleep(1)
-        wd.find_element_by_xpath("//a[@href='edit.php?id=" + str(index) + "']").click()
+        wd.find_element_by_xpath("//a[@href='edit.php?id=" + str(id) + "']").click()
 
-    def open_view_contact_by_index(self, index):
+    def open_view_contact_by_id(self, id):
         wd = self.app.wd
         self.return_to_home()
         sleep(1)
-        wd.find_element_by_xpath("//a[@href='view.php?id=" + str(index) + "']").click()
+        wd.find_element_by_xpath("//a[@href='view.php?id=" + str(id) + "']").click()
 
     def fill_contact_form(self, contact):
         self.app.change_field_value("firstname", contact.fname)
@@ -143,21 +143,22 @@ class ContactHelper:
                 address_value = cells[3].text
                 all_emails_value = cells[4].text
                 all_phones_value = cells[5].text
-                self.contact_cache.append(Contact(fname=first_name_value if first_name_value!="" else None,
-                                                  lname=last_name_value if last_name_value!="" else None,
-                                                  addr=address_value if address_value!="" else None,
-                                                  id=contact_id_value if contact_id_value!="" else None,
-                                                  all_phones=all_phones_value if all_phones_value!="" else None#"None\nNone\nNone\nNone"
+                self.contact_cache.append(Contact(fname=first_name_value if first_name_value != "" else None,
+                                                  lname=last_name_value if last_name_value != "" else None,
+                                                  addr=address_value if address_value != "" else None,
+                                                  id=contact_id_value if contact_id_value != "" else None,
+                                                  all_phones=all_phones_value,
+                                                  all_emails=all_emails_value
                                                   ))
         return self.contact_cache
 
-    def select_contact_by_index(self, index):
+    def select_contact_by_id(self, id):
         wd = self.app.wd
-        wd.find_element_by_xpath("//input[@value='" + str(index) + "']").click()
+        wd.find_element_by_xpath("//input[@value='" + str(id) + "']").click()
 
-    def get_contact_from_edit_page(self, index):
+    def get_contact_from_edit_page(self, id):
         wd = self.app.wd
-        self.open_edit_contact_by_index(index)
+        self.open_edit_contact_by_id(id)
         firstname_value = wd.find_element_by_name("firstname").get_attribute("value")
         lastname_value = wd.find_element_by_name("lastname").get_attribute("value")
         address_value = wd.find_element_by_name("address").get_attribute("value")
@@ -179,9 +180,9 @@ class ContactHelper:
                        phone2=secondaryphone_value if secondaryphone_value != "" else None
                        ))
 
-    def get_contact_from_view_page(self, index):
+    def get_contact_from_view_page(self, id):
         wd = self.app.wd
-        self.open_view_contact_by_index(index)
+        self.open_view_contact_by_id(id)
         text = wd.find_element_by_id("content").text
         try:
             home = re.search("H: (.*)", text).group(1)
@@ -200,3 +201,15 @@ class ContactHelper:
         except:
             phone2 = None
         return(Contact(home=home, work=work, mobile=mobile, phone2=phone2))
+
+    def del_relation(self, group, contact):
+        # How to delete group from contact by ui?
+        pass
+
+    def add_relation(self, group, contact):
+        wd = self.app.wd
+        self.return_to_home()
+        self.select_contact_by_id(str(contact.id))
+        wd.find_element_by_name("to_group").send_keys(str(group.group_id))
+        wd.find_element_by_name("add").click()
+        self.return_to_home()
