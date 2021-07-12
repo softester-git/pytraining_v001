@@ -1,0 +1,152 @@
+{
+  "uid" : "fe4b41a25a802705",
+  "name" : "test_create_group[nameVvWuGdF:headerIPFWc7:footerix2XbT4DIn:None]",
+  "fullName" : "test.test_groups#test_create_group",
+  "historyId" : "a1e845a3a330f5895309de1fa836a963",
+  "time" : {
+    "start" : 1626109450599,
+    "stop" : 1626109450599,
+    "duration" : 0
+  },
+  "status" : "broken",
+  "statusMessage" : "AttributeError: module 'pytest' has no attribute 'allure'",
+  "statusTrace" : "app = <fixture.application.Application object at 0x000001EFE5C4E9D0>\ndb = <fixture.db.DbFixture object at 0x000001EFE5C4E970>, check_ui = False\njson_groups = nameVvWuGdF:headerIPFWc7:footerix2XbT4DIn:None\n\n    def test_create_group(app, db, check_ui, json_groups):\n        group = json_groups\n>       with pytest.allure.steps(\"Given a group list\"):\nE       AttributeError: module 'pytest' has no attribute 'allure'\n\ntest\\test_groups.py:8: AttributeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "db",
+    "time" : {
+      "start" : 1626109435544,
+      "stop" : 1626109435566,
+      "duration" : 22
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "stop",
+    "time" : {
+      "start" : 1626109435544,
+      "stop" : 1626109435544,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "app",
+    "time" : {
+      "start" : 1626109450596,
+      "stop" : 1626109450598,
+      "duration" : 2
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "check_ui",
+    "time" : {
+      "start" : 1626109450598,
+      "stop" : 1626109450598,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "db::fin",
+    "time" : {
+      "start" : 1626109450794,
+      "stop" : 1626109450795,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "stop::fin",
+    "time" : {
+      "start" : 1626109450803,
+      "stop" : 1626109452875,
+      "duration" : 2072
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "test"
+  }, {
+    "name" : "suite",
+    "value" : "test_groups"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-OJ0G032"
+  }, {
+    "name" : "thread",
+    "value" : "17936-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test.test_groups"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "json_groups",
+    "value" : "nameVvWuGdF:headerIPFWc7:footerix2XbT4DIn:None"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "fe4b41a25a802705.json",
+  "parameterValues" : [ "nameVvWuGdF:headerIPFWc7:footerix2XbT4DIn:None" ]
+}
